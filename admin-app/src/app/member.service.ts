@@ -54,6 +54,17 @@ export class MemberService {
       )
   }
 
+  deleteMember(member: Member | number): Observable<Member> {
+    const id =typeof member === 'number' ? member : member.id;
+    const url = `${this.membersUrl}/${id}`;
+
+    return this.http.delete<Member>(url, this.httpOptions)
+      .pipe(
+        tap(_ => this.log(`deleted Employee Data(id=${id})`)),
+        catchError(this.handleError<Member>('deleteMember'))
+      )
+  }
+
   private log(message: string) {
     this.messageService.add(`MemberService: ${message}`);
   }

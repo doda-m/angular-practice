@@ -10,6 +10,7 @@
     <a routerLink="/detail/{{ member.id }}">
       <span class="badge">{{member.id}}</span> {{member.name}}
     </a>
+    <button class="delete" title="Delete Enployee" (click)="delete(member)">x</button>
   </li>
 </ul>
 
